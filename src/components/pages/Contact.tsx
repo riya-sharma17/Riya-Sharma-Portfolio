@@ -2,47 +2,68 @@
 import React from "react";
 import HeadingButton from "../ui/HeadingButton";
 import Image from "next/image";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        e.currentTarget,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      alert("Message sent successfully Thank you for reaching out!");
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Message failed  Please try again later");
+    }
+  };
+
+  const inputClass =
+    "border-l-4 border-b-4 border-transparent border-l-black border-b-black outline-none p-3 w-full text-[#8B8B8B] font-semibold transition hover:border-b-blue-500 hover:border-l-blue-500 focus:border-b-blue-500 focus:border-l-blue-500";
+
   return (
-    <div id="contact" className="bg-gray-background text-background h-full w-full flex flex-col justify-center items-center gap-10 md:px-[25vw] px-10 py-20">
+    <section
+      id="contact"
+      className="bg-gray-background w-full flex flex-col justify-center items-center gap-10 px-6 sm:px-10 md:px-[20vw] lg:px-[25vw] py-20"
+    >
       <HeadingButton text="contact" />
-      <p className="description">
-        Nulla in velit a metus rhoncus tempus. Nulla congue nulla vel sem varius
-        finibus. Sed ornare sit amet lorem sed viverra. In vel urna quis libero
-        viverra facilisis ut ac est.
+
+      <p className="description text-black text-center max-w-xl">
+        Want to collaborate or have a question?  
+        Send me a message and I’ll get back to you.
       </p>
-      <Image src={"/separator.svg"} alt="separator" width={100} height={100} />
-      <form className="w-full flex flex-col gap-10 justify-center items-center">
-        <input
-          type="text"
-          className="border-l-4 border-b-4 border-transparent border-l-black border-b-black outline-none  p-3 md:w-2/3 w-full uppercase text-[#8B8B8B] font-semibold hover:border-b-blue-500 hover:border-l-blue-500 transition
- focus:border-b-blue-500 focus:border-l-blue-500"
-          placeholder="Enter your email*"
+
+      <Image src="/separator.svg" alt="separator" width={100} height={100} />
+
+      <form
+        onSubmit={handleSubmit}
+        className="w-full flex flex-col gap-8 items-center"
+      >
+        <input name="name" type="text" required placeholder="Your name*" className={inputClass} />
+        <input name="email" type="email" required placeholder="Your email*" className={inputClass} />
+        <input name="subject" type="text" placeholder="Subject" className={inputClass} />
+        <textarea
+          name="message"
+          rows={4}
+          required
+          placeholder="Your message*"
+          className={inputClass}
         />
 
-        <input
-          type="text"
-          className="border-l-4 border-b-4 border-transparent border-l-black border-b-black outline-none  p-3 md:w-2/3 w-full uppercase text-[#8B8B8B] font-semibold hover:border-b-blue-500 hover:border-l-blue-500 transition
- focus:border-b-blue-500 focus:border-l-blue-500"
-          placeholder="Enter your email*"
-        />
-        <input
-          type="text"
-          className="border-l-4 border-b-4 border-transparent border-l-black border-b-black outline-none  p-3 md:w-2/3 w-full uppercase text-[#8B8B8B] font-semibold hover:border-b-blue-500 hover:border-l-blue-500 transition
- focus:border-b-blue-500 focus:border-l-blue-500"
-          placeholder="Enter your email*"
-        />
-        <textarea
-          placeholder="Enter your message"
-          className="border-l-4 border-b-4 border-transparent border-l-black border-b-black outline-none  p-3 md:w-2/3 w-full uppercase text-[#8B8B8B] font-semibold hover:border-b-blue-500 hover:border-l-blue-500 transition
- focus:border-b-blue-500 focus:border-l-blue-500"
-        />
-        <button className="font-montserrat uppercase border-l-2 border-r-2 px-5 font-semibold cursor-pointer">
-          SUBMIT 📮
+        <button
+          type="submit"
+          className="font-montserrat uppercase border-l-2 border-r-2 px-6 py-2 font-semibold hover:text-blue-500 transition text-black"
+        >
+          Submit 📮
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 
