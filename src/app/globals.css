@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  /*--background: #171717; */
+  /* --background: #121212; 
+  --foreground: #e5e5e5;  */
+
+  /* --background: #0a0a0a;
+  --foreground: #ededed; */
+
+  --foreground: #ffffff;
+  --background: #000000;
+  --gray-background: #d7d7d7;
+  --gray-dark: #c4c4c4;
+  --light-black: #1d1d1d;
+  --light-bold-text: #050505;
+  --gray: #909090;
+  /* 909090 */
+
+  --white: #ffffff;
+  --black: #000000;
+  --black-100: #000319;
+  --pink: #cbacf9;
+  --purple: #8f87f1;
+  --purple-500: #7a73d1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gray-background: var(--gray-background);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-montserrat: var(--font-montserrat);
+  --font-raleway: var(--font-raleway);
+  --font-open-sans: var(--font-open-sans);
+  --color-gray: var(--gray);
+  --color-gray-btn: var(--gray-dark);
+  --color-light-black: var(--light-black);
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-pink: #cbacf9;
+  --color-purple: #8f87f1;
+  --color-purple-500: #7a73d1;
+
+  --color-white-50: #d9ecff;
+  --color-black-50: #1c1c21;
+  --color-black-100: #0e0e10;
+  --color-black-200: #282732;
+  --color-blue-50: #839cb5;
+  --color-blue-100: #2d2d38;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  font-family: var(--font-montserrat);
+}
+
+.body-text {
+  font-family: var(--font-open-sans);
+}
+
+.fancy-text {
+  font-family: var(--font-raleway);
+}
+
+.nav-link {
+  font-family: var(--font-montserrat);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  text-wrap: none;
+  /* z-index: 99999; */
+}
+
+@layer utilities {
+  .header {
+    @apply text-background uppercase font-bold text-xl tracking-[3px];
+  }
+
+  .description {
+    @apply text-center text-sm font-extralight font-open-sans;
+  }
+  .heading {
+    @apply font-bold text-4xl md:text-5xl text-center text-white;
+  }
+}
+
+@layer components {
+  .timeline-wrapper {
+    @apply absolute top-0 xl:left-[35.5vw] md:left-10 left-5 h-full flex justify-center;
+  }
+
+  .timeline {
+    @apply absolute z-30 h-[110%] -top-10 w-14 md:w-28 bg-black;
+  }
+
+  .timeline-logo {
+    @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100;
+  }
+
+  .exp-card-wrapper {
+    @apply flex flex-col-reverse xl:flex-row xl:gap-20 gap-10 justify-between;
+  }
+
+  .gradient-line {
+    width: 2px;
+    background: linear-gradient(
+      0deg,
+      rgba(69, 222, 196, 0) 0%,
+      #62e0ff 25%,
+      #52aeff 37.51%,
+      #fd5c79 62.83%,
+      #6d45ce 92.91%
+    );
+  }
+}
