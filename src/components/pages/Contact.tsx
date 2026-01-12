@@ -13,14 +13,16 @@ const Contact = () => {
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         e.currentTarget,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        }
       );
 
-      alert("Message sent successfully Thank you for reaching out!");
+      alert("Message sent successfully! Thank you for reaching out.");
       e.currentTarget.reset();
-    } catch (error) {
-      console.error("EmailJS Error:", error);
-      alert("Message failed  Please try again later");
+    } catch (error: any) {
+      console.error("EmailJS FULL ERROR:", error);
+      alert(error?.text);
     }
   };
 
@@ -35,7 +37,7 @@ const Contact = () => {
       <HeadingButton text="contact" />
 
       <p className="description text-black text-center max-w-xl">
-        Want to collaborate or have a question?  
+        Want to collaborate or have a question?
         Send me a message and I’ll get back to you.
       </p>
 
@@ -48,13 +50,7 @@ const Contact = () => {
         <input name="name" type="text" required placeholder="Your name*" className={inputClass} />
         <input name="email" type="email" required placeholder="Your email*" className={inputClass} />
         <input name="subject" type="text" placeholder="Subject" className={inputClass} />
-        <textarea
-          name="message"
-          rows={4}
-          required
-          placeholder="Your message*"
-          className={inputClass}
-        />
+        <textarea name="message" rows={4} required placeholder="Your message*" className={inputClass} />
 
         <button
           type="submit"
