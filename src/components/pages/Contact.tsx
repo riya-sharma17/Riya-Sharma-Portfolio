@@ -22,7 +22,6 @@ const Contact = () => {
       e.currentTarget.reset();
     } catch (error: any) {
       console.error("EmailJS FULL ERROR:", error);
-      alert(error?.text);
     }
   };
 
