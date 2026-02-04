@@ -8,12 +8,10 @@ const About = () => {
         className="bg-light-black md:w-10/12 w-full
     md:px-20 px-10 md:pr-50 py-10 flex flex-col md:items-start items-center md:gap-6 gap-8"
       >
-        {/* <h1 className="font-montserrat font-bold text-3xl tracking-widest z-10">
-          IT BERRIES
-        </h1> */}
-        <h1 className="font-montserrat font-bold text-3xl tracking-widest z-10">
-          CREATING MODERN DIGITAL EXPERIENCES
-        </h1>
+     
+        <h2 className="font-montserrat font-bold text-3xl tracking-widest z-10">
+          Creating Modern Digital Experiences
+        </h2>
 
         <p className="font-open-sans text-sm text-justify z-10">
           Hi, I’m Riya 👋 — a full-stack developer who loves crafting

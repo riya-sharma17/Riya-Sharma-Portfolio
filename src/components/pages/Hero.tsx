@@ -10,7 +10,10 @@ const Hero = () => {
         <h2 className="hero-subheading">Hi, I am</h2>
         <div className="hero-name-container">
           <h1 className="hero-heading">Riya Sharma</h1>
-          <p className="hero-title">Software Engineer / FullStack Developer</p>
+          <h2 className="hero-title">
+            Software Developer | Full Stack Developer
+          </h2>
+
           {/* <p className="text-xs text-amber-800 font-medium italic z-50">
             Portfolio under development
           </p> */}
